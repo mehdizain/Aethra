@@ -96,14 +96,36 @@ class AspectRatioOptions extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 12.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      _buildRatioOption('1:1', 40, 40),
-                      _buildRatioOption('9:16', 30, 45),
-                      _buildRatioOption('16:9', 45, 30),
-                      _buildRatioOption('3:4', 35, 42),
-                    ],
+                  LayoutBuilder(
+                    builder: (context, constraints) {
+                      // Check if we have enough space for all options
+                      if (constraints.maxWidth < 280) {
+                        // Use scrollable row for smaller screens
+                        return SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              _buildRatioOption('1:1', 40, 40),
+                              _buildRatioOption('9:16', 30, 45),
+                              _buildRatioOption('16:9', 45, 30),
+                              _buildRatioOption('3:4', 35, 42),
+                            ],
+                          ),
+                        );
+                      } else {
+                        // Use spaced row for larger screens
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            _buildRatioOption('1:1', 40, 40),
+                            _buildRatioOption('9:16', 30, 45),
+                            _buildRatioOption('16:9', 45, 30),
+                            _buildRatioOption('3:4', 35, 42),
+                          ],
+                        );
+                      }
+                    },
                   ),
                 ],
               ),
@@ -118,7 +140,7 @@ class AspectRatioOptions extends StatelessWidget {
     return GestureDetector(
       onTap: () => onOptionSelected(ratio),
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 4.0),
+        margin: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Column(
           children: [
             Container(

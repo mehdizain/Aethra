@@ -199,7 +199,7 @@ class _ChatScreenState extends State<ChatScreen> {
         setState(() {
           _messages.add(
             ChatMessage(
-              text: 'Here\'s your $imageType image of "$objectName"!',
+              text: '',
               type: MessageType.bot,
               contentType: MessageContentType.image,
               imageBytes: imageBytes,

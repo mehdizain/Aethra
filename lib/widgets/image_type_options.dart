@@ -98,15 +98,18 @@ class ImageTypeOptions extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 12.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      _buildStyleOption('No Style', 'assets/images/no_style.png', 'realistic'),
-                      _buildStyleOption('Realistic', 'assets/images/realistic.png', 'realistic'),
-                      _buildStyleOption('Ghibli', 'assets/images/ghibli.png', 'anime-style'),
-                      _buildStyleOption('Van Gogh', 'assets/images/van_gogh.png', 'watercolor'),
-                      _buildStyleOption('3D', 'assets/images/3d_render.png', '3D render'),
-                    ],
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        _buildStyleOption('No Style', 'assets/images/no_style.png', 'realistic'),
+                        _buildStyleOption('Realistic', 'assets/images/realistic.png', 'realistic'),
+                        _buildStyleOption('Ghibli', 'assets/images/ghibli.png', 'anime-style'),
+                        _buildStyleOption('Van Gogh', 'assets/images/van_gogh.png', 'Van Gogh style'),
+                        _buildStyleOption('3D', 'assets/images/3d_render.png', '3D render'),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -122,6 +125,7 @@ class ImageTypeOptions extends StatelessWidget {
       onTap: () => onOptionSelected(value),
       child: Container(
         width: 60,
+        margin: const EdgeInsets.only(right: 8.0),
         child: Column(
           children: [
             Container(
